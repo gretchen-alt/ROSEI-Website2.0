@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policy | Ralph O'Connor Sustainable Energy Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Work+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Source+Serif+4:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #002D72;
+    --navy-dark: #001A4A;
+    --navy-mid:  #0A3D8F;
+    --orange:    #FF9E1B;
+    --red:       #CF4520;
+    --sable:     #31261D;
+    --cream:     #F4F2EB;
+    --white:     #FFFFFF;
+    --text-body: #2C2C2C;
+    --text-muted:#5F5E5A;
+    --border:    #D3D1C7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Work Sans', sans-serif; color: var(--text-body); line-height: 1.55; background: var(--white); }
+  h1, h2, h3 { font-family: 'Oswald', sans-serif; }
+  a { text-decoration: none; color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .eyebrow { font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); }
+  .eyebrow.on-navy { color: rgba(255,255,255,.45); }
+  img.placeholder-note, .flag { display: none; }
+
+  /* ===== NAV ===== */
+  nav { position: sticky; top: 0; z-index: 50; height: 68px; background: rgba(255,255,255,.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  nav .wrap { height: 68px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: flex; align-items: center; gap: .6rem; font-family: 'Oswald', sans-serif; font-weight: 700; color: var(--navy); font-size: 1rem; letter-spacing: .02em; }
+  .nav-logo .mark { width: 34px; height: 34px; border-radius: 6px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .85rem; font-weight: 700; }
+  .nav-links { display: flex; align-items: center; gap: 1.8rem; }
+  .nav-links a { font-size: .8rem; font-weight: 500; color: var(--sable); padding-bottom: 4px; border-bottom: 2px solid transparent; }
+  .nav-links a:hover, .nav-links a.active { border-bottom-color: var(--orange); color: var(--navy); }
+
+  /* ===== HERO ===== */
+  .hero { position: relative; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, var(--navy-mid) 100%); padding: 5.5rem 0 3.5rem; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; inset: 0; background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 64px 64px; pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 1; }
+  .hero-content { max-width: 860px; }
+  .hero .eyebrow { color: var(--orange); margin-bottom: 1rem; }
+  .hero h1 { font-size: 2.9rem; font-weight: 700; color: #fff; line-height: 1.14; margin-bottom: 1.25rem; }
+  .hero h1 span { color: var(--orange); font-weight: 300; }
+  .hero p.lede { font-size: 1.08rem; color: rgba(255,255,255,.78); max-width: 620px; margin-bottom: 2rem; font-weight: 300; }
+  .hero .btn-row { display: flex; flex-direction: row; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: .5rem; font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: .85rem; padding: .85rem 1.4rem; border-radius: 4px; }
+  .btn-primary { background: var(--orange); color: var(--navy-dark); }
+  .btn-primary:hover { background: #ffb54d; }
+  .btn-ghost { border: 1px solid rgba(255,255,255,.4); color: #fff; }
+  .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+  /* generic section */
+  section { padding: 5rem 0; }
+  .section-head { margin-bottom: 2.4rem; }
+  .section-head h2 { font-size: 1.9rem; font-weight: 700; color: var(--sable); }
+  .section-head h2.on-navy { color: #fff; }
+  .section-head p.sub { color: var(--text-muted); font-size: .95rem; max-width: 560px; margin-top: .4rem; margin-bottom: 1.1rem; font-weight: 300; }
+  .section-head p.sub.on-navy { color: rgba(255,255,255,.7); }
+  .link-arrow { font-size: .85rem; font-weight: 700; color: var(--orange); white-space: nowrap; }
+  .link-arrow:hover { color: var(--red); }
+  .link-arrow.on-navy { color: #fff; }
+  .link-arrow.on-navy:hover { color: var(--orange); }
+
+  /* ===== FEATURED BRIEF (white) — plain layout, no card box ===== */
+  .featured-brief { background: #fff; }
+  .featured-card { padding-top: .5rem; max-width: 640px; }
+  .featured-card .tag { display: block; color: var(--navy); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .9rem; }
+  .featured-card h3 { font-size: 1.6rem; font-weight: 500; color: var(--sable); margin-bottom: .6rem; line-height: 1.25; }
+  .featured-card p { color: var(--text-muted); font-size: .92rem; }
+  .draft-note { font-size: .72rem; color: var(--text-muted); font-style: italic; margin-top: .8rem; }
+
+  /* ===== STATES COLLABORATIVE (navy) ===== */
+  .states { background: var(--navy); }
+  .states-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+  .states-copy .eyebrow { margin-bottom: .8rem; }
+  .states-copy h2 { color: #fff; font-size: 2rem; margin-bottom: 1rem; }
+  .states-copy p { color: rgba(255,255,255,.78); font-size: .98rem; margin-bottom: 1rem; font-weight: 300; }
+  .states-copy p.callout { color: var(--orange); font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 1.05rem; margin: 1.4rem 0; }
+  .expert-card { text-align: center; padding-top: .5rem; }
+  .avatar { width: 110px; height: 110px; border-radius: 50%; background: var(--navy-mid); border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 1.7rem; font-weight: 700; color: #fff; margin: 0 auto 1.1rem; }
+  .expert-card .name { font-family: 'Oswald', sans-serif; font-weight: 500; color: #fff; font-size: 1.1rem; }
+  .expert-card .title { color: rgba(255,255,255,.6); font-size: .8rem; margin-top: .25rem; margin-bottom: .8rem; }
+  .expert-card .role-tag { font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--orange); font-weight: 600; }
+
+  /* ===== POLICY BRIEFS GRID (white) — plain columns, hairline divider only ===== */
+  .briefs { background: #fff; }
+  .brief-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+  .brief-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: box-shadow .2s, transform .2s; }
+  .brief-card:hover { box-shadow: 0 8px 24px rgba(0,45,114,.1); transform: translateY(-2px); }
+  .brief-card .photo { width: 100%; height: 150px; object-fit: cover; display: block; background: var(--cream); }
+  .brief-card .body { padding: 1.2rem 1.3rem 1.4rem; }
+  .brief-card .cat { font-size: .63rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--navy); }
+  .brief-card h4 { font-family: 'Work Sans', sans-serif; font-weight: 600; color: var(--sable); font-size: 1rem; margin: .5rem 0 .5rem; line-height: 1.35; }
+  .brief-card p { font-size: .85rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .brief-card .meta { font-size: .72rem; color: var(--text-muted); display: flex; justify-content: flex-start; align-items: center; gap: 1.4rem; }
+
+  /* ===== EXPERTS STRIP (cream) ===== */
+  .experts { background: #F7F6F2; }
+  .experts .wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: center; }
+  .experts blockquote { font-family: 'Source Serif 4', serif; font-style: italic; font-size: 1.15rem; color: var(--sable); line-height: 1.5; }
+  .experts .who { margin-top: 1.2rem; font-family: 'Work Sans', sans-serif; font-style: normal; font-size: .85rem; color: var(--text-muted); }
+  .experts .who strong { color: var(--sable); }
+  .pillar-note { padding-top: .3rem; }
+  .pillar-note .eyebrow { margin-bottom: .6rem; }
+  .pillar-note h3 { font-size: 1.15rem; color: var(--sable); font-weight: 500; margin-bottom: .8rem; }
+  .pillar-note ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .8rem; }
+  .pillar-note li { font-size: .82rem; color: var(--text-body); padding-left: 1rem; position: relative; }
+  .pillar-note li::before { content: ""; position: absolute; left: 0; top: .5em; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+
+  /* ===== CTA (navy) ===== */
+  .cta { background: var(--navy-dark); background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0 2px, transparent 2px 40px); }
+  .cta-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2.5rem; align-items: center; }
+  .cta-copy .eyebrow { margin-bottom: .8rem; }
+  .cta-copy h2 { color: #fff; font-size: 2.1rem; margin-bottom: 1rem; }
+  .cta-copy p { color: rgba(255,255,255,.72); font-size: .98rem; font-weight: 300; max-width: 480px; }
+  .cta-form { background: var(--navy); border: 1px solid rgba(255,158,27,.15); border-radius: 10px; padding: 1.8rem; }
+  .cta-form label { display: block; font-size: .72rem; color: rgba(255,255,255,.6); margin-bottom: .3rem; text-transform: uppercase; letter-spacing: .06em; }
+  .cta-form input, .cta-form select { width: 100%; background: var(--navy-dark); border: 1px solid rgba(255,255,255,.15); border-radius: 5px; padding: .65rem .8rem; color: #fff; font-family: 'Work Sans', sans-serif; font-size: .85rem; margin-bottom: 1rem; }
+  .cta-form button { width: 100%; background: var(--orange); color: var(--navy-dark); border: none; padding: .8rem; border-radius: 5px; font-weight: 600; font-size: .85rem; font-family: 'Work Sans', sans-serif; cursor: pointer; }
+  .cta-form button:hover { background: #ffb54d; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--navy-dark); padding: 4rem 0 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .footer-grid h5 { color: #fff; font-family: 'Oswald', sans-serif; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-grid p, .footer-grid a { color: rgba(255,255,255,.55); font-size: .82rem; line-height: 2; }
+  .footer-grid a:hover { color: var(--orange); }
+  .footer-bottom { padding-top: 1.6rem; display: flex; justify-content: space-between; color: rgba(255,255,255,.4); font-size: .74rem; flex-wrap: wrap; gap: .6rem; }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.1rem; }
+    .states-grid, .cta-grid, .experts .wrap { grid-template-columns: 1fr; }
+    .brief-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="nav-logo"><img src="logo-blue.png" alt="ROSEI" height="36"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">Research</a>
+      <a href="#">Education</a>
+      <a href="#" class="active">Policy</a>
+      <a href="#">News &amp; Events</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+      <a href="get-involved.html">Get Involved</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="eyebrow">Policy</div>
+      <h1>Non‑partisan research.<br><span>Policy‑ready answers.</span></h1>
+      <p class="lede">ROSEI translates engineering, economics, and market analysis into rapid-response briefs and regional data — built for the people who write the rules, not just the research that informs them.</p>
+      <div class="btn-row">
+        <a href="#briefs" class="btn btn-primary">See policy briefs</a>
+        <a href="#briefing" class="btn btn-ghost">Request a briefing</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== FEATURED WHITE PAPER ===== -->
+<section class="featured-brief">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Featured Insight</h2>
+      <p class="sub">The latest analysis from ROSEI's Analytics, Markets &amp; Policy pillar.</p>
+    </div>
+    <div class="featured-card">
+      <span class="tag">White Paper</span>
+      <h3>[Working title — white paper name to be confirmed]</h3>
+      <p>[One-line description of the paper's core finding and who it's written for — pending final copy approval.]</p>
+      <p class="draft-note">Placeholder — swap in confirmed title, abstract, and download link before publish.</p>
+      <a href="#" class="link-arrow" style="display:inline-block; margin-top:1rem;">Download the brief →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NE STATES COLLABORATIVE ===== -->
+<section class="states">
+  <div class="wrap">
+    <div class="states-grid">
+      <div class="states-copy">
+        <div class="eyebrow on-navy">Regional Policy</div>
+        <h2>The Northeast States Collaborative</h2>
+        <p>ROSEI convenes engineers, economists, and state agency staff to align regional grid planning with the pace of the clean energy transition — turning technical modeling into decisions state legislatures can act on.</p>
+        <p class="callout">A multi-state partnership on regional grid policy.</p>
+        <p>Every brief is grounded in engineering and market data, reviewed for accuracy, and delivered on the timeline policymakers actually work on.</p>
+        <a href="#" class="btn btn-ghost" style="padding:.6rem 1.1rem; font-size:.8rem;">See the States Collaborative →</a>
+      </div>
+      <div class="expert-card">
+        <div class="avatar">AS</div>
+        <div class="name">Abe Silverman</div>
+        <div class="title">Lead, NE States Collaborative</div>
+        <span class="role-tag">Named Expert</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POLICY BRIEFS GRID ===== -->
+<section class="briefs" id="briefs">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Policy Briefs</h2>
+      <p class="sub">Two-page, non-partisan briefs built for a legislative or agency desk.</p>
+      <a href="#" class="btn btn-primary" style="padding:.6rem 1.1rem; font-size:.8rem;">View all briefs →</a>
+    </div>
+    <div class="brief-grid">
+      <div class="brief-card">
+        <img class="photo" src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80" alt="">
+        <div class="body">
+          <span class="cat">Grid Policy</span>
+          <h4>[Brief title — grid reliability topic, pending confirmation]</h4>
+          <p>[One-sentence summary of the finding and its policy relevance.]</p>
+          <div class="meta"><span>[Month 2026]</span><span class="link-arrow">Read →</span></div>
+        </div>
+      </div>
+      <div class="brief-card">
+        <img class="photo" src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=80" alt="">
+        <div class="body">
+          <span class="cat">Market Design</span>
+          <h4>[Brief title — market design topic, pending confirmation]</h4>
+          <p>[One-sentence summary of the finding and its policy relevance.]</p>
+          <div class="meta"><span>[Month 2026]</span><span class="link-arrow">Read →</span></div>
+        </div>
+      </div>
+      <div class="brief-card">
+        <img class="photo" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80" alt="">
+        <div class="body">
+          <span class="cat">Federal Policy</span>
+          <h4>[Brief title — state &amp; federal policy topic, pending confirmation]</h4>
+          <p>[One-sentence summary of the finding and its policy relevance.]</p>
+          <div class="meta"><span>[Month 2026]</span><span class="link-arrow">Read →</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="draft-note" style="margin-top:1.4rem;">All three briefs above are structural placeholders — titles, dates, and summaries need real content before this section is publish-ready.</p>
+  </div>
+</section>
+
+<!-- ===== EXPERTS / PILLAR TIE-IN ===== -->
+<section class="experts">
+  <div class="wrap">
+    <div>
+      <blockquote>"Policymakers don't need more research. They need the two pages that tell them what to do with it."</blockquote>
+      <p class="who">— <strong>Illustrative framing</strong>, not an attributed quote. Pending a real, approved quote from a named ROSEI policy researcher.</p>
+    </div>
+    <div class="pillar-note">
+      <div class="eyebrow">Research Pillar</div>
+      <h3>Analytics, Markets &amp; Policy</h3>
+      <ul>
+        <li>Energy Economics</li>
+        <li>Market Design</li>
+        <li>Energy Justice</li>
+        <li>State &amp; Federal Policy</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REQUEST A BRIEFING CTA ===== -->
+<section class="cta" id="briefing">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="cta-copy">
+        <div class="eyebrow on-navy">Get a briefing</div>
+        <h2>Request a policy briefing.</h2>
+        <p>Tell us your topic and timeline. A ROSEI researcher will follow up directly — no waiting for the next publication cycle.</p>
+      </div>
+      <div class="cta-form">
+        <label>Name</label>
+        <input type="text" placeholder="Your name">
+        <label>Organization</label>
+        <input type="text" placeholder="Agency, office, or company">
+        <label>Topic</label>
+        <input type="text" placeholder="e.g. regional grid reliability">
+        <button type="button">Request a briefing</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>ROSEI</h5>
+        <p>Ralph O'Connor Sustainable Energy Institute<br>Johns Hopkins University</p>
+        <p style="margin-top:1rem;">#HopkinsEnergy</p>
+      </div>
+      <div>
+        <h5>Site</h5>
+        <a href="index.html">Home</a><br>
+        <a href="#">Research</a><br>
+        <a href="#">Education</a><br>
+        <a href="#" style="color:var(--orange);">Policy</a>
+      </div>
+      <div>
+        <h5>More</h5>
+        <a href="#">News &amp; Events</a><br>
+        <a href="#">About</a><br>
+        <a href="#">Resources</a>
+      </div>
+      <div>
+        <h5>Connect</h5>
+        <a href="get-involved.html">Get Involved</a><br>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Johns Hopkins University · Ralph O'Connor Sustainable Energy Institute</span>
+      <span>energyinstitute.jhu.edu</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
